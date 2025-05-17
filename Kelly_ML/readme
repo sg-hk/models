@@ -1,0 +1,3 @@
+WIP replication of Kelly's Empirical Asset Pricing in Python. The RMSE right now follow the paper very accurately; some polishing needs to be done, then performance needs to be measured
+
+Finally, the paper is extended to max returns (this part is not public)
