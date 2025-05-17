@@ -1,0 +1,23 @@
+simple PDE-based Black–Scholes solver using implicit/Crank–Nicolson with Rannacher smoothing
+usage:
+  $ ./main C -s 100 -k 100 -v 0.10 -r 0.05 -T 1 -M 200 -N 200
+or generally:
+  $ ./main <C|P> -s <S₀> -k  -v <σ> -r  -T  -M  -N 
+
+with:
+  <C|P>   call or put
+  -s      initial stock price S₀ (must be > 0)
+  -k      strike price K (must be > 0)
+  -v      volatility σ (annualized; e.g. 0.20 for 20%)
+  -r      risk-free rate r (annualized; e.g. 0.05 for 5%)
+  -T      time to maturity T in years (must be > 0)
+  -M      number of asset‐price grid steps (must be ≥ 3)
+  -N      number of time‐steps (must be ≥ 3)
+
+assumptions:
+  • asset domain truncated at Sₘₐₓ = S₀·exp((r + 4σ)·T) to cover ≈4σ tail (error ≪10⁻⁴)
+  • ΔS = Sₘₐₓ / M, Δt = T / N
+  • Rannacher smoothing: first 2 full steps as two backward-Euler half-steps (θ=1), then Crank–Nicolson (θ=0.5) for remaining N–2 steps
+  • boundary conditions: payoff at S=0 and S=Sₘₐₓ enforced each step
+
+Ensure M and N are chosen (e.g. M,N≈500–1000) so MN ≤10⁶ for sub-second runtimes on modern hardware.
