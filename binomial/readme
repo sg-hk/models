@@ -1,0 +1,13 @@
+simple n-step binomial pricer, using BSM assumptions. 
+usage:
+  $ ./main C -n 10 -s 100 -k 100 -r 0.05 -T 1 -v 0.10
+or generally:
+  $ ./main <C|P> -n <steps> -s <S₀> -k <K> -r <r> -T <T> -v <σ_total> 
+with:
+  <C|P>  call or put
+  -n     number of steps
+  -s     initial stock price S_0
+  -k     strike price K
+  -r     risk-free rate r (annual, e.g. 0.05)
+  -T     time to maturity T in years (e.g. 1.0)
+  -v     total volatility over T (annualized, e.g. 0.2)
